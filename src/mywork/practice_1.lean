@@ -11,8 +11,11 @@ axioms of equality, but either of the theorems about properties
 of equality that we have proven. Hint: There's something about
 this question that makes it much easier to answer than it might
 at first appear.
+-/
 
-Given that w = z, the symmetric property of equality shows that z = w
+/-
+Given that w = z, we can show that  z = w by applying the symmetric
+property of equality
 -/
 
 
@@ -63,9 +66,11 @@ Give a very brief explanation in English of the introduction
 rule for ∀. For example, suppose you need to prove (∀ x, P x);
 what do you do? (I'm being a little informal in leaving out the
 type of X.) 
+-/
 
+/-
 For the introduction rule for ∀, we must assume an arbitrary 'x'.
-For (∀ x, P x), we must assume an arbitrary 'x' and show that 'P' is a property of 'x'.
+For (∀ x, P x), we must assume an arbitrary 'x' and show that 'P' is a property of 'x'. Because "x" is arbitrary, P x must be true of all (x : T)
 -/
 
 /- #5
@@ -126,9 +131,11 @@ you are asked to use the elimination rule for →.
 
 axiom pf_its_raining : raining
 
-#check pf_its_raining
-
-example : streets_wet := if_raining_then_streets_wet pf_its_raining
+example : streets_wet := 
+begin
+  apply if_raining_then_streets_wet,
+  apply pf_its_raining
+end
 
 
 /- 
@@ -196,10 +203,10 @@ proof, let's call it p_qr, of (P ∧ (Q ∧ R)) [by
 application of ∧ and → introduction.] What now
 remains to be proved is ((P ∧ Q) ∧ R). We can
 construct a proof of this proposition by applying
-the introduction rule of "and" to a proof of (P ∧ Q) and a proof of R.
+the introduction rule of "∧" (and) to a proof of (P ∧ Q) and a proof of R.
 What remains, then, is to obtain these proofs.
 But this is easily done by the application of
-the introduction rule of "and" to a proof of P and and a proof of Q. QED. 
+the elimination rule of "∧" to pq_r. QED. 
 -/
 
 
