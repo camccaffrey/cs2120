@@ -9,7 +9,7 @@ until today (9/18). Thus, we were completely unaware that we needed a group name
 same file to upload, and links to email addresses/github URLs. I attempted multiple times to get in contact with
 my group members since the UVACollab issue resolved itself, but I have not been successful. As a result, I cannot
 guarantee that my group's files will look identical to mine or that the above links are correct (though they
-should be). I apologize for any inconvience this may cause.
+should be). I apologize for any inconvenience this may cause.
 -/
 
 
