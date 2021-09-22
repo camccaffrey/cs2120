@@ -27,7 +27,10 @@ This is a trick question because, by definition, there is no proof of "false."
 
 example : ∀ (P : Prop), P ∨ P ↔ P := 
 /-
-For arbitrary proposition P, we must show that P ∨ P if and only if P. To do this, we must show that P ∨ P → P and that P → P ∨ P in order to use the introduction rule for "if and only if." For the first route, we assume P ∨ P and then apply the elimination rule for "or." We find proof of P in both cases. For the second route, we assume P and apply the introduction rule of "or" to prove that P ∨ P. QED.
+For arbitrary proposition P, we must show that P ∨ P if and only if P. To do this, we must show that P ∨ P → P and that P → P ∨ P
+in order to use the introduction rule for "if and only if." For the first route, we assume P ∨ P and then apply the elimination rule for 
+"or." We find proof of P in both cases. For the second route, we assume P and apply the introduction rule of "or" to prove that P ∨ P. 
+QED.
 -/
 begin
   assume P,
@@ -49,7 +52,10 @@ end
 
 example : ∀ (P : Prop), P ∧ P ↔ P := 
 /-
-For arbitrary proposition P, we must show that P ∧ P if and only if P. To do this, we must show that  P ∧ P → P and that P → P ∧ P in order to apply the introduction rule for "if and only if." For the first route, we asusme P ∧ P and apply the elimination rule of "and," reducing the expression to P → P. In the second route, we assume P and use the introduction rule for "and," filling both sides with P. Thus, we have proof that P → P ∧ P. QED.
+For arbitrary proposition P, we must show that P ∧ P if and only if P. To do this, we must show that  P ∧ P → P and that P → P ∧ P in 
+order to apply the introduction rule for "if and only if." For the first route, we asusme P ∧ P and apply the elimination rule of "and," 
+reducing the expression to P → P. In the second route, we assume P and use the introduction rule for "and," filling both sides with P. 
+Thus, we have proof that P → P ∧ P. QED.
 -/
 begin
   assume P,
@@ -67,7 +73,13 @@ end
 
 example : ∀ (P Q : Prop), P ∨ Q ↔ Q ∨ P := 
 /-
-For arbitrary propositions P and Q, we must show that P ∨ Q if and only if Q ∨ P. To do this, we must show that P ∨ Q → Q ∨ P and that Q ∨ P → P ∨ Q to apply the introduction rule for "if and only if." For the first route, we assume P ∨ Q and use the elimination rule for "or" to explore two different cases. In the first case, we assume P and apply the introduction rule for "or" to the right side of Q ∨ P. In the second case, we assume Q and apply the introduction rule for "or" to the left side of Q ∨ P. This allows us to show that P ∨ Q → Q ∨ P. For the seond route, we assume Q ∨ P and use the elimination rule for "or" to explore two differnt cases. In the first case, we assume Q and apply the introduction rule for "or" to the right side of P ∨ Q. In the second case, we assume P and apply the introducton rule for "or" to the left side of P ∨ Q. This allows us to show that Q ∨ P → P ∨ Q. QED.
+For arbitrary propositions P and Q, we must show that P ∨ Q if and only if Q ∨ P. To do this, we must show that P ∨ Q → Q ∨ P and that
+Q ∨ P → P ∨ Q to apply the introduction rule for "if and only if." For the first route, we assume P ∨ Q and use the elimination rule for 
+"or" to explore two different cases. In the first case, we assume P and apply the introduction rule for "or" to the right side of Q ∨ P. 
+In the second case, we assume Q and apply the introduction rule for "or" to the left side of Q ∨ P. This allows us to show that
+P ∨ Q → Q ∨ P. For the seond route, we assume Q ∨ P and use the elimination rule for "or" to explore two differnt cases. In the first 
+case, we assume Q and apply the introduction rule for "or" to the right side of P ∨ Q. In the second case, we assume P and apply the 
+introducton rule for "or" to the left side of P ∨ Q. This allows us to show that Q ∨ P → P ∨ Q. QED.
 -/
 begin
   assume P Q,
@@ -90,7 +102,11 @@ end
 
 example : ∀ (P Q : Prop), P ∧ Q ↔ Q ∧ P := 
 /-
-For arbitrary propositions P and Q, we must show that P ∧ Q if and only if Q ∧ P. To do this, we must show that P ∧ Q → Q ∧ P and that Q ∧ P → P ∧ Q to apply the introduction rule for "if and only if." For the first route, we can use the elimination rule for "and" on the left and right side to prove both P and Q. Then, the introduction rule for "and" can be used on Q and P to prove Q ∧ P. For the second route, we can use the elimination rule for "and" on the left and right side to prove both Q and P. Then, the introduction rule for "and" can be used on P and Q to prove P ∧ Q. QED.
+For arbitrary propositions P and Q, we must show that P ∧ Q if and only if Q ∧ P. To do this, we must show that P ∧ Q → Q ∧ P and that
+Q ∧ P → P ∧ Q to apply the introduction rule for "if and only if." For the first route, we can use the elimination rule for "and" on the 
+left and right side to prove both P and Q. Then, the introduction rule for "and" can be used on Q and P to prove Q ∧ P. For the second 
+route, we can use the elimination rule for "and" on the left and right side to prove both Q and P. Then, the introduction rule for "and" 
+can be used on P and Q to prove P ∧ Q. QED.
 -/
 begin
   assume P Q,
@@ -111,7 +127,18 @@ end
 
 example : ∀ (P Q R : Prop), P ∧ (Q ∨ R) ↔ (P ∧ Q) ∨ (P ∧ R) := 
 /-
-For arbitrary propositions P Q R, we must show that P ∧ (Q ∨ R) if and only if (P ∧ Q) ∨ (P ∧ R). To do this, we must show that P ∧ (Q ∨ R) → (P ∧ Q) ∨ (P ∧ R) and that (P ∧ Q) ∨ (P ∧ R) → P ∧ (Q ∨ R) to apply the introduction rule for "if and only if." For the first route, we assume P ∧ (Q ∨ R) and use the left and right elimination rules of "and" to prove P as well as Q ∨ R. Then, the elimination rule for "or" is applied to Q ∨ R, creating two cases to explore. In the first case, we assume Q and apply the introduction rule for "or" to (P ∧ Q) ∨ (P ∧ R) with the goal of prooving P ∧ Q. We can go about this by using the introduction rule for "and " with P and Q. In the second case, we assume R and apply the introduction rule for "or" to (P ∧ Q) ∨ (P ∧ R) with the goal of prooving P ∧ R. We can go about this by using the introduction rule for "and" with P and R. For the second route, we assume (P ∧ Q) ∨ (P and R) and use the elimination rule for "or" on both sides, creating two cases for exploration. In the first case, we assume P ∧ Q and apply the elimination rule for "and" to both sides to prove both P and Q. Then, we can use the introduction rule for "or" to Q ∨ R using our proof of Q. Now, we can use the introduction rule for "and" with P and (Q ∧ R) to prove P ∧ (Q ∨ R). IN the second case, we assume P ∧ R and apply the elimination rule for "and" to both sides to prove both P and R. Then, we can use the introduction rule for "or" to Q ∨ R using our proof of R. Now, we can use the introduction rule for "and" with P and (Q ∨ R) to prove P ∧ (Q ∨ R). QED.
+For arbitrary propositions P Q R, we must show that P ∧ (Q ∨ R) if and only if (P ∧ Q) ∨ (P ∧ R). To do this, we must show that
+P ∧ (Q ∨ R) → (P ∧ Q) ∨ (P ∧ R) and that (P ∧ Q) ∨ (P ∧ R) → P ∧ (Q ∨ R) to apply the introduction rule for "if and only if." For the 
+first route, we assume P ∧ (Q ∨ R) and use the left and right elimination rules of "and" to prove P as well as Q ∨ R. Then, the 
+elimination rule for "or" is applied to Q ∨ R, creating two cases to explore. In the first case, we assume Q and apply the introduction 
+rule for "or" to (P ∧ Q) ∨ (P ∧ R) with the goal of prooving P ∧ Q. We can go about this by using the introduction rule for "and " with P 
+and Q. In the second case, we assume R and apply the introduction rule for "or" to (P ∧ Q) ∨ (P ∧ R) with the goal of prooving P ∧ R. We 
+can go about this by using the introduction rule for "and" with P and R. For the second route, we assume (P ∧ Q) ∨ (P and R) and use the 
+elimination rule for "or" on both sides, creating two cases for exploration. In the first case, we assume P ∧ Q and apply the elimination 
+rule for "and" to both sides to prove both P and Q. Then, we can use the introduction rule for "or" to Q ∨ R using our proof of Q. Now, 
+we can use the introduction rule for "and" with P and (Q ∧ R) to prove P ∧ (Q ∨ R). IN the second case, we assume P ∧ R and apply the 
+elimination rule for "and" to both sides to prove both P and R. Then, we can use the introduction rule for "or" to Q ∨ R using our proof 
+of R. Now, we can use the introduction rule for "and" with P and (Q ∨ R) to prove P ∧ (Q ∨ R). QED.
 -/
 begin
   assume P Q R,
@@ -149,7 +176,18 @@ end
 
 example : ∀ (P Q R : Prop), P ∨ (Q ∧ R) ↔ (P ∨ Q) ∧ (P ∨ R) := 
 /-
-For arbitrary propositions P Q R, we must show that P ∨ (Q ∧ R) if and only if (P ∨ Q) ∧ (P ∨ R). To do this, we must show that P ∨ (Q ∧ R) → (P ∨ Q) ∧ (P ∨ R) and that (P ∨ Q) ∧ (P ∨ R) → P ∨ (Q ∧ R) in order to apply the introduction rule for "if and only if." For the first route, we assume P ∨ (Q ∧ R) and apply the elimination rule for "or," creating two cases for exploration. In the first case, we assume P and apply the elimination rule for "and" on both sides of (P ∨ Q) ∧ (P ∨ R) to prove both P ∨ Q and P ∨ R. We can prove both of these propositions by applying the introduction rule for "or" to the left side of both statements with our proof of P. In the second case, we assume Q ∧ R and apply apply the elimination rule for "and" to prove both Q and R. We can also apply the elimination rule for "and" on both sides of (P ∨ Q) ∧ (P ∨ R) to prove both P ∨ Q and P ∨ R. We can then prove P ∨ Q by applying the introduction rule of "or" to the right side with our proof of Q, and we can prove P ∨ R by applying the introduction rule of "or" to the left side with our proof of R. For the second route, we assume (P ∨ Q) ∧ (P ∨ R) and apply the elimination rule for "and" to prove both P ∨ Q and P ∨ R. In the case where we assume P, we can prove  P ∨ (Q ∧ R) by applying the introduction rule for "or" to the left side with our proof of P. In the case where we assume both Q and R, we can use the introduction rule of "and" to show proof of Q ∧ R. We can then prove P ∨ (Q ∧ R) by applying the introduction rule of "or" to the right side with our proof of Q ∧ R. QED.
+For arbitrary propositions P Q R, we must show that P ∨ (Q ∧ R) if and only if (P ∨ Q) ∧ (P ∨ R). To do this, we must show that
+P ∨ (Q ∧ R) → (P ∨ Q) ∧ (P ∨ R) and that (P ∨ Q) ∧ (P ∨ R) → P ∨ (Q ∧ R) in order to apply the introduction rule for "if and only if." 
+For the first route, we assume P ∨ (Q ∧ R) and apply the elimination rule for "or," creating two cases for exploration. In the first 
+case, we assume P and apply the elimination rule for "and" on both sides of (P ∨ Q) ∧ (P ∨ R) to prove both P ∨ Q and P ∨ R. We can prove 
+both of these propositions by applying the introduction rule for "or" to the left side of both statements with our proof of P. In the 
+second case, we assume Q ∧ R and apply apply the elimination rule for "and" to prove both Q and R. We can also apply the elimination rule 
+for "and" on both sides of (P ∨ Q) ∧ (P ∨ R) to prove both P ∨ Q and P ∨ R. We can then prove P ∨ Q by applying the introduction rule of 
+"or" to the right side with our proof of Q, and we can prove P ∨ R by applying the introduction rule of "or" to the left side with our 
+proof of R. For the second route, we assume (P ∨ Q) ∧ (P ∨ R) and apply the elimination rule for "and" to prove both P ∨ Q and P ∨ R. In 
+the case where we assume P, we can prove  P ∨ (Q ∧ R) by applying the introduction rule for "or" to the left side with our proof of P. In 
+the case where we assume both Q and R, we can use the introduction rule of "and" to show proof of Q ∧ R. We can then prove P ∨ (Q ∧ R) by 
+applying the introduction rule of "or" to the right side with our proof of Q ∧ R. QED.
 -/
 begin
   assume P Q R,
@@ -195,7 +233,11 @@ end
 
 example : ∀ (P Q : Prop), P ∧ (P ∨ Q) ↔ P := 
 /-
-For arbitary propositions P Q, we must show that P ∧ (P ∨ Q) if and only if P. To do this, we must show that P ∧ (P ∨ Q) → P and that P → P ∨ (P ∧ Q) in order to apply the introduction rule for "if and only if." For the first route, we assume P ∧ (P ∨ Q) and apply the elimination rule for "and" to the left to proove P. For the second route, we must be able to show that P ∨ Q so that we can apply the introduction rule for "and" using P and P ∨ Q. To prove P ∨ Q, we use the introduction rule for "or" on the left side with our assumed proof of P. QED.
+For arbitary propositions P Q, we must show that P ∧ (P ∨ Q) if and only if P. To do this, we must show that P ∧ (P ∨ Q) → P and that
+P → P ∨ (P ∧ Q) in order to apply the introduction rule for "if and only if." For the first route, we assume P ∧ (P ∨ Q) and apply the 
+elimination rule for "and" to the left to proove P. For the second route, we must be able to show that P ∨ Q so that we can apply the 
+introduction rule for "and" using P and P ∨ Q. To prove P ∨ Q, we use the introduction rule for "or" on the left side with our assumed 
+proof of P. QED.
 -/
 begin
   assume P Q,
@@ -213,7 +255,11 @@ end
 
 example : ∀ (P Q : Prop), P ∨ (P ∧ Q) ↔ P := 
 /-
-For arbitary propositions P Q, we must show that P ∨ (P ∧ Q) if and only if P. To do this, we must show that P ∨ (P ∧ Q) → P and that P → P ∨ (P ∧ Q) in order to apply the introduction rule for "if and only if." For the first route, we assume P ∨ (P ∧ Q) and apply the elimination rule for "or," leaving us with two cases to explore. In the first case, we assume P and it follows that P → P. In the second case, we assume P ∧ Q and use the elimination rule for "and" on the left size to show proof of P. QED. For the second route, we assume P and prove P ∨ (P ∧ Q) by applying the introduction rule for "or" on the left side with our assumed proof of P. QED. 
+For arbitary propositions P Q, we must show that P ∨ (P ∧ Q) if and only if P. To do this, we must show that P ∨ (P ∧ Q) → P and that
+P → P ∨ (P ∧ Q) in order to apply the introduction rule for "if and only if." For the first route, we assume P ∨ (P ∧ Q) and apply the 
+elimination rule for "or," leaving us with two cases to explore. In the first case, we assume P and it follows that P → P. In the second 
+case, we assume P ∧ Q and use the elimination rule for "and" on the left size to show proof of P. QED. For the second route, we assume P 
+and prove P ∨ (P ∧ Q) by applying the introduction rule for "or" on the left side with our assumed proof of P. QED. 
 -/
 begin
   assume P Q,
@@ -234,7 +280,11 @@ end
 
 example : ∀ (P : Prop), P ∨ true ↔ true := 
 /-
-For arbitrary proposition P, we must show that P ∨ true if and only if P. To do this, we must show that P ∨ false →P and that P → P ∨ false in order to apply the introduction rule for "if and only if." For the first route, we assume P ∨ true and apply the elimination rule for "or," creating two cases for exploration. In the first case, we assume P and it follows that P → P. In the second case, we assume true and use the introduction rule for "true" as proof of true. For the second route, we assume P and prove P ∨ false by applyng the introduction rule for "or" to the left side with our assume proof of P. QED.
+For arbitrary proposition P, we must show that P ∨ true if and only if P. To do this, we must show that P ∨ false →P and that
+P → P ∨ false in order to apply the introduction rule for "if and only if." For the first route, we assume P ∨ true and apply the 
+elimination rule for "or," creating two cases for exploration. In the first case, we assume P and it follows that P → P. In the second 
+case, we assume true and use the introduction rule for "true" as proof of true. For the second route, we assume P and prove P ∨ false by 
+applyng the introduction rule for "or" to the left side with our assume proof of P. QED.
 -/
 begin
   assume P,
@@ -250,7 +300,11 @@ end
 
 example : ∀ (P : Prop), P ∨ false ↔ P := 
 /-
-For arbitrary proposition P, we must show that P ∨ false if and only if P. To do this, we must show that P ∨ false → P and that P → P ∨ false in order to apply the introduction rule for "if and only if." For the first route, we assume P ∨ false and apply the elimination rule for "or," creating two cases for exploration. In the first case, we assume P and it follows that P → P. In the second case, we assume false and use case analysis to show proof of P. For the second route, we assume P and prove P ∨ false by applying the introduction rule for "or" to the left side with our assumed proof of P. QED.
+For arbitrary proposition P, we must show that P ∨ false if and only if P. To do this, we must show that P ∨ false → P and that
+P → P ∨ false in order to apply the introduction rule for "if and only if." For the first route, we assume P ∨ false and apply the 
+elimination rule for "or," creating two cases for exploration. In the first case, we assume P and it follows that P → P. In the second 
+case, we assume false and use case analysis to show proof of P. For the second route, we assume P and prove P ∨ false by applying the 
+introduction rule for "or" to the left side with our assumed proof of P. QED.
 -/
 begin
   assume P,
@@ -272,7 +326,10 @@ end
 
 example : ∀ (P : Prop), P ∧ true ↔ P := 
 /-
-For arbitrary proposition P, we must show that P ∧ true if and only if P. To do this, we must show that P ∧ true → P and that P → P ∧ true in order to apply the introduction rule for "if and only if." For the first route, we assume P ∧ true and apply the elimination rule for "and" to the left side to proove P. For the second route, we assume P and use the introdution rule for "true" as our proof of true. Then, we can apply the introduction rule for "and" using our proof of P and true to show that P ∧ true. QED.
+For arbitrary proposition P, we must show that P ∧ true if and only if P. To do this, we must show that P ∧ true → P and that
+P → P ∧ true in order to apply the introduction rule for "if and only if." For the first route, we assume P ∧ true and apply the 
+elimination rule for "and" to the left side to proove P. For the second route, we assume P and use the introdution rule for "true" as our 
+proof of true. Then, we can apply the introduction rule for "and" using our proof of P and true to show that P ∧ true. QED.
 -/
 begin
   assume P,
@@ -287,7 +344,10 @@ end
 
 example : ∀ (P : Prop), P ∧ false ↔ false := 
 /-
-For arbitrary proposition P, we must show that P ∧ false if and only if false. To do this, we must show that P ∧ false → false and that false → P ∧ false in order to apply the introduction rule for "if and only if." For the first route, we assume P ∧ false and apply the elimination rule for "and" to the right side to show that P ∧ false → false. For the second route, we assume false and must do case analysis before applying the introduction rule for "and" to show that false → P ∧ false 
+For arbitrary proposition P, we must show that P ∧ false if and only if false. To do this, we must show that P ∧ false → false and that 
+false → P ∧ false in order to apply the introduction rule for "if and only if." For the first route, we assume P ∧ false and apply the 
+elimination rule for "and" to the right side to show that P ∧ false → false. For the second route, we assume false and must do case 
+analysis before applying the introduction rule for "and" to show that false → P ∧ false 
 -/
 begin
   assume P,
