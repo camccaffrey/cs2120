@@ -109,7 +109,7 @@ the predicate "an object of type α implies an object of type β"
 to our instance of "α", we can again reduce our goal to proving
 that predicate "q" applied to the aformentioned predicate is
 true. We further reduce our goal to proving that predicate "p"
-applied to "α" is true by appling assumption (G) to "α". Since
+applied to "α" is true by applying assumption (G) to "α". Since
 this was assumed to be true in assumption (E), simply apply the
 assumption. QED
 -/
