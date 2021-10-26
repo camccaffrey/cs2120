@@ -89,8 +89,29 @@ end
 -- Give your informal proof here
 
 /-
-First, we assume that (A) there exists a function "f" that implies a value of type "β" from a value of type "α" for all "a" of type "α", (B) a predicate "p" for "a" being true
-implies that another predicate, q, for "f applied to a" is also true, and (C) there exists an "a" of type "α" for which "p applied to a" is true. Next, we can apply the elimination rule of exists to these assumptions in order to assume the following: (D) there exists an object "a" of type "α", (E) proposition "p" applied to "a" is true, (F) an object of type "α" implies an object of type "β", and (G) if for all "a" of type "α", predicate "p" applied to "a" is true, and if that implies that predicate "q" when applied to the predicate "α → β applied to a" is also true, then there exists a "b" of type "β" for which predicate "q" applied to "b" is true. We can then apply the introduction rule of exists in order to reduce our goal to act of proving an object of type "β". By applying the predicate "an object of type α implies an object of type β" to our instance of "α", we can again reduce our goal to proving that predicate "q" applied to the aformentioned predicate is true. We further reduce our goal to proving that predicate "p" applied to "α" is true by appling assumption (G) to "α". Since this was assumed to be true in assumption (E), simply apply the assumption. QED
+First, we assume that (A) there exists a function "f" that
+implies a value of type "β" from a value of type "α" for
+all "a" of type "α", (B) a predicate "p" for "a" being true
+implies that another predicate, q, for "f applied to a" is also
+true, and (C) there exists an "a" of type "α" for which
+"p applied to a" is true. Next, we can apply the elimination
+rule of exists to these assumptions in order to assume the
+following: (D) there exists an object "a" of type "α",
+(E) proposition "p" applied to "a" is true, (F) an object of
+type "α" implies an object of type "β", and (G) if for all "a"
+of type "α", predicate "p" applied to "a" is true, and if that
+implies that predicate "q" when applied to the predicate
+"α → β applied to a" is also true, then there exists a "b" of
+type "β" for which predicate "q" applied to "b" is true. We can
+then apply the introduction rule of exists in order to reduce
+our goal to act of proving an object of type "β". By applying
+the predicate "an object of type α implies an object of type β"
+to our instance of "α", we can again reduce our goal to proving
+that predicate "q" applied to the aformentioned predicate is
+true. We further reduce our goal to proving that predicate "p"
+applied to "α" is true by appling assumption (G) to "α". Since
+this was assumed to be true in assumption (E), simply apply the
+assumption. QED
 -/
 
 
