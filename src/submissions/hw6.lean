@@ -16,11 +16,11 @@ begin
   apply set.ext _, -- rewrite the goal
   assume a,
   split,
-  -- left
-    assume ael,
-    cases ael,
-    exact ael_left,
-  -- right
+  -- forwards
+    assume aell,
+    cases aell,
+    exact aell_left,
+  -- backwards
     assume ael,
     apply and.intro ael ael,
 end 
