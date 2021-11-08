@@ -252,10 +252,10 @@ partial (order) relation
   - i.e., given any two elements, they are not necesarily related in at least one direction
       - the two given elements may be incomparable
       - not total
+      - I suggest looking up the difference between partial vs total for further clarification
   - However, the relation is still reflexive, transitive, and antisymmetric
 
-well orderin
-
+well_ordering: ???
 
 ex: total order relation of {0, 1, 2, 3}, "->" means relates
 o -> 0, 1, 2, 3
