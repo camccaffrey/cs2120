@@ -1,90 +1,19 @@
-import .lecture_23 
+import .lecture_23a
 
 variables {α β : Type}  (r : β → β → Prop)
 local infix `≺`:50 := r  
 
 /-
-UNIVERSAL QUANTIFICATION OVER AN EMPTY SET IS TRUE
-
-Let's review the most puzzling of the examples from
-last time: a relation r = {(0,1), (2,3)} we said is
-transitive because it satisfies the constraint that
-defines transitivity: for every x, y, and x, if (x,y)
-is in r, and (y,z) is in r, then (x,z) is in r. This
-relation is transitive because in *every* case where
-we have (x, y) and (y, z) in r, (x, z) is in r. In
-this example, there are *no* such cases, and so the
-predicate is satisfied!
-
-Let's think about this principle using a different
-example. Question: is every ball in an empty bucket
-of balls red?
--/
-
-axioms (Ball : Type) (red : Ball → Prop)
-def empty_bucket := ({} : set Ball)
-lemma  allBallsInEmptyBucketAreRed : 
-  ∀ (b : Ball), b ∈ empty_bucket → red b := 
-begin
-  assume b h,
-  cases h,             -- finish off this proof
-end
-
-/- 
-Whoa, ok. That's a little bit counterintuitive, but
-it's correct. A universal quantification over an empty
-set is always trivially true. 
-
-
-Here's another way to think about it. Suppose we had 
-a set with two balls in it: { b1, b2 }. To show that 
-every ball is red, we could use case analysis: break
-the task into two cases: show that b1 is red, AND 
-show that all balls in the remaining set, { b2 }, are
-red. 
-
-To prove the latter, we'd show that b2 is red, and 
-that all balls in the remaining set, {}, are red. 
-So we have that all balls are red if (red b1) ∧ 
-(red b2) ∧ "all balls in {} are red". 
-
-If b1 and b2 really are red, then the last proposition
-better be true if the whole chain of ∧ operations is to 
-be true. When you think about ∀ as a version of ∧ that
-can take any number of arguments, not just 2, it becomes
-clear that when applied to zero arguments, the answer 
-really has to be true, otherwise this operation would
-*always* produce propositions that are ultimately false.  
--/
-
-/-
-So now let's revisit once again our funny example of
-transitivity: { (0,1), (2,3) }. There are no cases 
-here where we have both (x,y) and (y,z) as pairs in
-this relation, so there are no cases to consider. 
-When there are no cases to consider, the conclusion
-holds in all cases, of which there are 0, so it holds.
-
-Question: Is this symmetric? {(0,1), (1,0), (2,2)}
-How about this: {(0,1), (1,0), (2,3)}?
-
-Now suppose that we have a relation, r, over a set
-of values, {0, 1, 2, 3, 4, 5}. Is this relation
-reflexive? {} What about this: {(0, 1), (2, 3)}
-
-Question: If a relation is transitive and symmetric
-is it necessarily reflexive? If so, give an informal
-argument/proof. If not, give a counter-example. 
--/
-
-/-
 CLOSURE OPERATIONS ON RELATIONS
 
 Given a relation, r, the reflexive, symmetric, or
-transitive closure of r is the smallest relation that
+transitive closure of r is "the smallest relation that
 (1) contains r, and (2) contains any additional pairs
 needed to make the resulting relation reflexive, or
-symmetric, or transitive, respectively. 
+symmetric, or transitive, respectively." By smallest
+we mean a relation that contains r and that has the
+fewest additional pairs needed to obtain the given
+property, with no other unnecessary pairs added in. 
 
 The reflexive, symmetric, transitive closure of 
 r is the smallest relation that contains r and 
@@ -98,7 +27,8 @@ relation will be an equivalence relation.
 A pair (a, b) is in the reflexive closure of r if
 (a, b) is in r or if (a = b).
 -/
-def reflexive_closure := λ (a b : β), (r a b) ∨ (a = b)
+def reflexive_closure := 
+  λ (a b : β), (r a b) ∨ (a = b)
 
 /-
 Exercise: what pairs are in the reflexivee closure of
@@ -113,7 +43,8 @@ r = {}
 A pair (a, b) is in the symmetric closure of r if 
 (a, b) is in r or if (b, a) is i r.
 -/
-def symmetric_closure := λ (a b : β), (r a b) ∨ (r b a)
+def symmetric_closure := 
+  λ (a b : β), (r a b) ∨ (r b a)
 
 /-
 Consider a set, s = {0, 1, 2, 3} and a binary relation
@@ -212,5 +143,8 @@ computer science. That suggests something about teaching
 first-order logic as a first logic for computer science:
 there's real reason to doubt that it's the best choice.
 The higher-order predicate logic of Lean and similar
-modern proof assistants is strictly more expressive.
+modern proof assistants is strictly more expressive,
+and that makes it easier (even possible) to express ideas
+in high-order predicate logic than first-order predicate
+logic.
 -/
