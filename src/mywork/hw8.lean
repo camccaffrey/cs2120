@@ -422,6 +422,95 @@ def bijectivep := function r ∧ bijective (dom_res r (dom_of_def r))
 -- EXERCISE #2: Prove that the inverse of a bijective function is bijective.
 example : bijective r → bijective (inverse r) :=
 begin
+
+  assume bij,
+  
+--proof of definitions
+  have sur := and.elim_left bij,
+      cases sur with total all,           -- total, all
+        unfold total_function at total,  
+  
+  have inj := and.elim_right bij,
+      cases inj with total one_to_one,    -- total, one_to_one
+
+      cases total with funct isdef,       -- funct, isdef
+        unfold function at funct,
+        unfold single_valued at funct,
+        unfold defined at isdef,
+
+
+--unfold all definitons
+  unfold bijective,
+  unfold surjective,
+  unfold injective,
+  unfold total_function,
+  unfold function,
+  unfold single_valued,
+  unfold defined,
+  unfold inverse,
+
+
+--break into multiple goals
+  split,
+  split,
+  split,
+
+
+--goal # 1: ∀ {x : β} {y z : α}, r y x → r z x → y = z
+  assume b,
+  assume a1,
+  assume a2,
+  assume r1,
+  assume r2,
+
+  apply one_to_one r1 r2,
+
+--goal #2: ∀ (a : β), ∃ (b : α), r b a
+  assume b,
+
+  apply all b,
+
+
+--goal #3: ∀ (b : α), ∃ (a : β), r b a
+  assume a,
+
+  apply isdef a,
+
+
+--goal #4
+  --break into multiple goals
+    split,
+    split,
+
+  --goal #4.1: ∀ {x : β} {y z : α}, r y x → r z x → y = z
+    assume b,
+    assume a1,
+    assume a2,
+    assume r1,
+    assume r2,
+
+    apply one_to_one r1 r2,
+
+
+  --goal #4.2: ∀ (a : β), ∃ (b : α), r b a
+    assume b,
+
+    apply all b,
+
+  --goal #4.3: ∀ {x y : β} {z : α}, r z x → r z y → x = y
+    assume b1,
+    
+    have ea_rab := all b1,
+    apply exists.elim ea_rab,
+    
+    assume a,
+    assume rab,
+    assume b2,
+    assume a,
+    assume r1,
+    assume r2,
+
+    apply funct r1 r2,
 end
 
 
@@ -431,6 +520,19 @@ function is that function.
 -/
 example : bijective r → (r = inverse (inverse r)) :=
 begin
+  assume bij,
+
+  have sur := and.elim_left bij,
+    cases sur with total all,
+
+  have inj := and.elim_right bij,
+    cases inj with total one_to_one,
+
+    cases total with funct isdef,
+      unfold function at funct,
+      unfold single_valued at funct,
+      unfold defined at isdef,
+      unfold inverse,
 end
 
 /-
@@ -438,8 +540,21 @@ EXERCISE  #4: Formally state and prove that every injective function
 has a *function* as an inverse.
 -/
 example : injective r → function (inverse r) :=
-  _ -- hint: remember recent work
+  -- hint: remember recent work
+  begin
+    assume inj,
+    assume b,
+    assume a1,
+    assume a2,
 
+    unfold inverse,
+    
+    assume r1,
+    assume r2,
+
+    cases inj with total one_to_one,
+    apply one_to_one r1 r2,
+  end
 
 /-
 EXERCISE #5. Is bijectivity transitive? In other words, if the
@@ -454,9 +569,198 @@ open relations    -- for definition of composition
 Check the following proposition. True? prove it for all.
 False? Present a counterexample.
 -/
+
 def bij_trans (s : β → γ → Prop)  (r : α → β → Prop) :
   bijective r → bijective s → bijective (composition s r) := 
-  _
+  
+begin
+  assume bij_r,
+  assume bij_s,
+
+  have sur_r := and.elim_left bij_r,
+    cases sur_r with total_r all_r,
+
+  have inj_r := and.elim_right bij_r,
+    cases inj_r with total_r one_to_one_r,
+
+    cases total_r with funct_r isdef_r,
+      unfold function at funct_r,
+      unfold single_valued at funct_r,
+      unfold defined at isdef_r,
+
+  have sur_s := and.elim_left bij_s,
+    cases sur_s with total_s all_s,
+
+  have inj_s := and.elim_right bij_s,
+    cases inj_s with total_s one_to_one_s,
+
+    cases total_s with funct_s isdef_s,
+      unfold function at funct_s,
+      unfold single_valued at funct_s,
+      unfold defined at isdef_s,
+
+
+  unfold bijective,
+  unfold surjective,
+  unfold injective,
+  unfold total_function,
+  unfold function,
+  unfold single_valued,
+  unfold defined,
+  unfold composition,
+
+  split,
+  split,
+  split,
+
+
+
+
+
+
+  assume a,
+  assume γ1,
+  assume γ2,
+  assume e1,
+  assume e2,
+
+  apply exists.elim e1,
+    assume b1,
+    assume sr1,
+  
+  apply exists.elim e2,
+    assume b2,
+    assume sr2,
+  
+  have s1 := and.elim_left sr1,
+  have r1 := and.elim_right sr1,
+  have s2 := and.elim_left sr2,
+  have r2 := and.elim_right sr2,
+
+  have c := funct_r r1 r2,
+  rw c at s1,
+
+  apply funct_s s1 s2,
+
+
+
+
+
+ 
+  assume a,
+  have eb_rab := isdef_r a,
+    apply exists.elim eb_rab,
+    assume b,
+    assume rab,
+
+  have ey_sby := isdef_s b,
+    apply exists.elim ey_sby,
+    assume y,
+    assume sby,
+
+  apply exists.intro y,
+  apply exists.intro b,
+  apply and.intro sby rab,
+
+
+
+
+
+  assume y,
+  have eb_say := all_s y,
+    apply exists.elim eb_say,
+    assume b,
+    assume say,
+  have eb_rab := all_r b,
+    apply exists.elim eb_rab,
+    assume a,
+    assume rab,
+
+  apply exists.intro a,
+  apply exists.intro b,
+  apply and.intro say rab,
+
+
+
+
+
+
+
+  split,
+  split,
+  
+
+      assume a,
+      assume y1,
+      assume y2,
+      assume eb_sb1y1_rab,
+      assume eb_sb2y2_rab,
+
+      apply exists.elim eb_sb1y1_rab,
+        assume b1,
+        assume sb1y1_rab,
+          have sb1y1 := and.elim_left sb1y1_rab,
+          have rab1 := and.elim_right sb1y1_rab,
+      
+      apply exists.elim eb_sb2y2_rab,
+        assume b2,
+        assume sb2y2_rab,
+          have sb2y2 := and.elim_left sb2y2_rab,
+          have rab2 := and.elim_right sb2y2_rab,
+
+      have c : b1 = b2 := funct_r rab1 rab2,
+      rw c at sb1y1,
+      apply funct_s sb1y1 sb2y2,
+
+
+
+
+
+
+      assume a,
+      have eb_rab := isdef_r a,
+        apply exists.elim eb_rab,
+        assume b,
+        assume rab,
+      
+      have ey_sby := isdef_s b,
+        apply exists.elim ey_sby,
+        assume y,
+        assume sby,
+      
+      apply exists.intro y,
+      apply exists.intro b,
+      apply and.intro sby rab,
+
+
+
+
+
+
+
+      assume a1,
+      assume a2,
+      assume y,
+      assume eb_sb1y_ra1b,
+      assume eb_sb2y_ra2b,
+
+      apply exists.elim eb_sb1y_ra1b,
+        assume b1,
+        assume sb1y_ra1b1,
+          have sb1y := and.elim_left sb1y_ra1b1,
+          have ra1b1 := and.elim_right sb1y_ra1b1,
+
+      apply exists.elim eb_sb2y_ra2b,
+        assume b2,
+        assume sb2y_ra2b2,
+          have sb2y := and.elim_left sb2y_ra2b2,
+          have ra2b2 := and.elim_right sb2y_ra2b2,
+
+      have c := one_to_one_s sb1y sb2y,
+      rw c at ra1b1,
+      apply one_to_one_r ra1b1 ra2b2,
+
+end
 
 /-
 In general, an operation (such as inverse, here) that, 
