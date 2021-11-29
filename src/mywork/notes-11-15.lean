@@ -1,7 +1,7 @@
 /-
-Monday 11/15 Notes
+**Monday 11/15 Notes**
 
-*see lecture 27b*
+(see lecture 27b)
 
 single-value relation:
     - when an alpha maps to one beta, or multiple betas that equal eachother
@@ -85,7 +85,32 @@ def bijective := surjective r ∧ injective r
 
 
 /-
-Wednesday 11/17 Notes
+**Monday 11/22 Notes**
+
+Induction rule for bool:
+    ∀ (b : bool), P b
+
+    ∀ (P : bool → Prop),
+        P tt →
+        P ff → 
+    ∀ (b : bool), P b
+
+Induction rule for nat:
+    ∀ (n : nat), P n,
+        P 0,
+        ∀ n, P n' → P (n' + 1)
+    ∀ n, P n
+
+(see pictures in phone)
 
 
 -/
+
+def sum_to : nat → nat :=
+begin
+    assume n,
+    induction n with n' ih,
+    exact 0,
+    exact ih + (n' + 1),
+
+end 

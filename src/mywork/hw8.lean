@@ -577,6 +577,7 @@ begin
   assume bij_r,
   assume bij_s,
 
+--proof of definitons
   have sur_r := and.elim_left bij_r,
     cases sur_r with total_r all_r,
 
@@ -600,6 +601,7 @@ begin
       unfold defined at isdef_s,
 
 
+--unfold all definitions
   unfold bijective,
   unfold surjective,
   unfold injective,
@@ -609,15 +611,15 @@ begin
   unfold defined,
   unfold composition,
 
+
+--break into multiple goals
   split,
   split,
   split,
 
 
-
-
-
-
+--goal #1: ∀ {x : α} {y z : γ}, (∃ (b : β), s b y ∧ r x b) →
+--         (∃ (b : β), s b z ∧ r x b) → y = z
   assume a,
   assume γ1,
   assume γ2,
@@ -643,10 +645,7 @@ begin
   apply funct_s s1 s2,
 
 
-
-
-
- 
+--goal #2: ∀ (a : α), ∃ (b : γ) (b_1 : β), s b_1 b ∧ r a b_1
   assume a,
   have eb_rab := isdef_r a,
     apply exists.elim eb_rab,
@@ -663,9 +662,7 @@ begin
   apply and.intro sby rab,
 
 
-
-
-
+--goal #3: ∀ (b : γ), ∃ (a : α) (b_1 : β), s b_1 b ∧ r a b_1
   assume y,
   have eb_say := all_s y,
     apply exists.elim eb_say,
@@ -681,15 +678,14 @@ begin
   apply and.intro say rab,
 
 
+--goal #4
+    --break into multiple goals
+      split,
+      split,
 
-
-
-
-
-  split,
-  split,
   
-
+    --goal #4.1: ∀ {x : α} {y z : γ}, (∃ (b : β), s b y ∧ r x b) →
+    --           (∃ (b : β), s b z ∧ r x b) → y = z
       assume a,
       assume y1,
       assume y2,
@@ -713,10 +709,7 @@ begin
       apply funct_s sb1y1 sb2y2,
 
 
-
-
-
-
+    --goal #4.2: ∀ (a : α), ∃ (b : γ) (b_1 : β), s b_1 b ∧ r a b_1
       assume a,
       have eb_rab := isdef_r a,
         apply exists.elim eb_rab,
@@ -733,11 +726,8 @@ begin
       apply and.intro sby rab,
 
 
-
-
-
-
-
+    --goal #4.3: ∀ {x y : α} {z : γ}, (∃ (b : β), s b z ∧ r x b) → 
+    --           (∃ (b : β), s b z ∧ r y b) → x = y
       assume a1,
       assume a2,
       assume y,
